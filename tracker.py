@@ -2,6 +2,8 @@ import requests
 from bs4 import BeautifulSoup
 import smtplib
 import os
+import time 
+from datetime import datetime
 from dotenv import load_dotenv
 load_dotenv()
 MY_EMAIL=os.getenv("EMAIL_USER")
@@ -38,4 +40,10 @@ def check_price():
     else:
         print("product is expensive")
 if __name__=="__main__":
-    check_price()
+    print("bot started")
+    while True:
+        now=datetime.now().strftime("%H:%M:%S")
+        print(f"\n [{now} waking up to check]")
+        check_price()
+        print("sleeping for 60 minutes")
+        time.sleep(3600)
